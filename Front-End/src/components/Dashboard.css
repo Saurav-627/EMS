@@ -1,0 +1,9 @@
+li:hover{
+    background-color: rgb(102, 116, 102);
+    transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    color:azure;
+}
