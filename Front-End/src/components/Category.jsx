@@ -14,7 +14,7 @@ const Category = () => {
         if (result.data.Status) {
           setCategory(result.data.Result);
         } else {
-          alert(result.data.err);
+          alert(result.data.Error);
         }
       })
       .catch((err) => console.log(err));
@@ -49,7 +49,7 @@ const Category = () => {
         Add Category
       </Link>
 
-      <div className="w-full max-h-80 overflow-y-scroll shadow mt-3 mb-3 border">
+      <div style={{maxHeight:"27rem"}} className="w-full overflow-y-scroll shadow mt-3 mb-3 border">
         <table className="w-full min-w-max table-auto text-left border-collapse border border-gray-200  overflow-scroll rounded-lg">
           <thead className="border">
             <tr>

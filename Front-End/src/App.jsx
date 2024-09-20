@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import {BrowserRouter, Routes , Route} from "react-router-dom";
 import Profile from "./components/Profile";
 import AddCategory from "./components/AddCategory";
+import AddEmployee from "./components/AddEmployee";
+import EditEmployee from "./components/EditEmployee";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
          <Route path="/dashboard/category" element={<Category />}></Route>
          <Route path="/dashboard/profile" element={<Profile />}></Route>
          <Route path="/dashboard/add_category" element={<AddCategory />} ></Route>
+         <Route path="/dashboard/add_employee" element={<AddEmployee />} ></Route>
+         <Route path="/dashboard/edit_employee/:id" element={<EditEmployee />}></Route>
         </Route>
       </Routes>
       </BrowserRouter>
