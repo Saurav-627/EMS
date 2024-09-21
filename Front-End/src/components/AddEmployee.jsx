@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
@@ -125,7 +126,7 @@ const AddEmployee = () => {
               onClick={togglePasswordVisibility}
               className="absolute right-2 top-8 cursor-pointer text-center"
             >
-              {showPassword ? "👁️" : "🙈"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
           <div>

@@ -165,4 +165,96 @@ router.delete("/delete_employee/:id", (req, res) => {
   });
 });
 
+router.get("/employee_count", (req, res) => {
+  const sql = "SELECT COUNT(*) AS totalEmployee FROM employee";
+  conn.query(sql, (err, result) => {
+    if (err)
+      return res.json({
+        Status: false,
+        Error: "Query Error in Count: " + err.message,
+      });
+    return res.json({ Status: true, totalEmployee: result[0].totalEmployee });
+  });
+});
+
+router.get("/admin_count", (req, res) => {
+  const sql = "SELECT COUNT(*) AS totalAdmin FROM admin";
+  conn.query(sql, (err, result) => {
+    if (err)
+      return res.json({
+        Status: false,
+        Error: "Query Error in Count: " + err.message,
+      });
+    return res.json({ Status: true, totalAdmin: result[0].totalAdmin });
+  });
+});
+
+router.get("/total_salary", (req, res) => {
+  const sql = "SELECT SUM(salary) AS totalSalary FROM employee";
+  conn.query(sql, (err, result) => {
+    if (err)
+      return res.json({
+        Status: false,
+        Error: "Query Error in Count: " + err.message,
+      });
+    return res.json({ Status: true, totalSalary: result[0].totalSalary });
+  });
+});
+
+router.get("/admin", (req, res) => {
+  const sql = "SELECT * from admin";
+  conn.query(sql, (err, result) => {
+    if (err)
+      return res.json({ Status: false, Error: "Query Error" + err.message });
+    return res.json({ Status: true, Result: result });
+  });
+});
+
+//Add data in admin table
+router.post("/add_admin", (req, res) => {
+  const { Name, Email, Password } = req.body; // Destructure the request body
+  const sql =
+    "INSERT INTO admin (`Name`, `Email`, `Password`) VALUES (?, ?, ?)";
+  conn.query(sql, [Name, Email, Password], (err, result) => {
+    if (err) {
+      console.error("Query Error in add admin:", err.message); // Log the error message for debugging
+      return res.json({ Status: false, Error: "Query Error in add admin" });
+    }
+    return res.json({ Status: true });
+  });
+});
+
+//delete data from admin table
+router.delete("/delete_admin/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "DELETE FROM admin WHERE ID = ?";
+  conn.query(sql, [id], (err, result) => {
+    if (err) return res.json({ Status: false, Error: "Query Error" });
+    return res.json({ Status: true, Result: result });
+  });
+});
+
+//get data from admin table
+
+router.get("/edit_admin/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "SELECT * FROM admin WHERE ID = ?";
+  conn.query(sql, [id], (err, result) => {
+    if (err) return res.json({ Status: false, Error: "Query Error" });
+    return res.json({ Status: true, Result: result });
+  });
+});
+
+//updating data of admin
+router.put("/edit_admin/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "UPDATE admin SET Name = ?, Email = ?, Password = ? WHERE ID = ?";
+  conn.query(sql, [req.body.Name, req.body.Email, req.body.Password, id], (err, result) => {
+    if (err) return res.json({ Status: false, Error: "Query Error" });
+    return res.json({ Status: true, Result: result });
+  });
+});
+
+
 export { router as adminRouter };
+

@@ -42,7 +42,7 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li className=" rounded-md p-1 cursor-pointer">
-                <Link to="/adminlogin" className="flex justify-center gap-2 ">
+                <Link to="/" className="flex justify-center gap-2 ">
                   <AiOutlineLogout className="bg-none text-white text-2xl" />
                   Log Out
                 </Link>

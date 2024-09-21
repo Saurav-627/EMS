@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 
 const Employee = () => {
   const [employee, setEmployee] = useState([]);
-
-  const navigate = useNavigate();
 
   // Sample data for table headers and rows
   const TABLE_HEAD = [

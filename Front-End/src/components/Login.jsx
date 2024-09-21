@@ -73,14 +73,8 @@ const Login = () => {
               type="submit"
               name="submit"
               value={"Log In"}
-              className=" rounded-md p-1  cursor-pointer bg-green-600 w-full"
+              className=" rounded-md p-1  cursor-pointer bg-green-600 w-40"
             />
-          </div>
-          <div className="flex flex-row justify-center items-center ">
-            <input type="checkbox" name="tick" id="tick" />
-            <label htmlFor="checkbox" className="px-1">
-              You are Agree with terms & condition
-            </label>
           </div>
         </form>
       </div>

@@ -8,6 +8,8 @@ import Profile from "./components/Profile";
 import AddCategory from "./components/AddCategory";
 import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
+import AddAdmin from "./components/AddAdmin";
+import EditAdmin from "./components/EditAdmin";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
          <Route path="/dashboard/add_category" element={<AddCategory />} ></Route>
          <Route path="/dashboard/add_employee" element={<AddEmployee />} ></Route>
          <Route path="/dashboard/edit_employee/:id" element={<EditEmployee />}></Route>
+         <Route path="/dashboard/add_admin" element={<AddAdmin />}></Route>
+         <Route path="/dashboard/edit_admin/:id" element={<EditAdmin />}></Route>
         </Route>
       </Routes>
       </BrowserRouter>
