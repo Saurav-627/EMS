@@ -24,21 +24,30 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li className=" rounded-md p-1 cursor-pointer">
-                <Link to="/dashboard/employee" className="flex justify-center gap-2 ">
+                <Link
+                  to="/dashboard/employee"
+                  className="flex justify-center gap-2 "
+                >
                   <IoPeopleSharp className="bg-none text-white text-2xl" />
                   Manage Employees
                 </Link>
               </li>
               <li className=" rounded-md p-1 cursor-pointer">
-                <Link to="/dashboard/category" className="flex justify-center gap-2 ">
+                <Link
+                  to="/dashboard/category"
+                  className="flex justify-center gap-2 "
+                >
                   <BiCategory className="bg-none text-white text-2xl" />
                   Category
                 </Link>
               </li>
               <li className=" rounded-md p-1 cursor-pointer">
-                <Link to="/dashboard/profile" className="flex justify-center gap-2 ">
+                <Link
+                  to="/dashboard/admin"
+                  className="flex justify-center gap-2 "
+                >
                   <CgProfile className="bg-none text-white text-2xl" />
-                  Profile
+                  Admin
                 </Link>
               </li>
               <li className=" rounded-md p-1 cursor-pointer">
@@ -51,8 +60,8 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="p-0 m-0 w-full">
-          <div className="p-5 shadow-md w-full font-bold text-center">
-            <h4>Employee Management System</h4>
+          <div className="p-5 flex justify-between shadow-md w-full font-bold">
+            <h4 className="flex-1 text-center">Employee Management System</h4>
           </div>
           <Outlet />
         </div>

@@ -23,7 +23,7 @@ const AddAdmin = () => {
       .post("http://localhost:3000/auth/add_admin", admin)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/dashboard");
+          navigate("/dashboard/admin");
         } else {
           console.error("Error adding admin:", result.data.Error);
         }

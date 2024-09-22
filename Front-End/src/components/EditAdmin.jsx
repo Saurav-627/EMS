@@ -34,7 +34,7 @@ const EditAdmin = () => {
     axios.put(`http://localhost:3000/auth/edit_admin/${id}`, admin)
       .then((result) => {
         if(result.data.Status){
-         navigate("/dashboard");
+         navigate("/dashboard/admin");
         }
         else{
           alert("Admin Not Updated");

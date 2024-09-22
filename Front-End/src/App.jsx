@@ -10,6 +10,7 @@ import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
 import AddAdmin from "./components/AddAdmin";
 import EditAdmin from "./components/EditAdmin";
+import Admin from "./components/Admin";
 
 const App = () => {
   return (
@@ -21,12 +22,14 @@ const App = () => {
          <Route path="/dashboard" element={<Home />}></Route>
          <Route path="/dashboard/employee" element={<Employee />}></Route>
          <Route path="/dashboard/category" element={<Category />}></Route>
+         <Route path='/dashboard/admin' element={<Admin /> }> </Route>
          <Route path="/dashboard/profile" element={<Profile />}></Route>
          <Route path="/dashboard/add_category" element={<AddCategory />} ></Route>
          <Route path="/dashboard/add_employee" element={<AddEmployee />} ></Route>
          <Route path="/dashboard/edit_employee/:id" element={<EditEmployee />}></Route>
          <Route path="/dashboard/add_admin" element={<AddAdmin />}></Route>
          <Route path="/dashboard/edit_admin/:id" element={<EditAdmin />}></Route>
+         <Route path="/dashboard/profile/:id" element={<Profile />}></Route>
         </Route>
       </Routes>
       </BrowserRouter>

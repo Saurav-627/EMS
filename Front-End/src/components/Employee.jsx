@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { VscAccount } from "react-icons/vsc";
 
 const Employee = () => {
   const [employee, setEmployee] = useState([]);
@@ -91,16 +92,24 @@ const Employee = () => {
                   <td>{data.Name}</td>
                   <td>{data.salary}</td>
                   <td className="">
-                    <div className="flex justify-center gap-4 text-xl">
+                    <div className="flex justify-center gap-3 text-xl items-center">
+                   
+                    <Link
+                        to={`/dashboard/profile/${data.id}`}
+                        className="text-grey-500 hover:text-blue-500 transition-all duration-1000 font-bold"
+                      >
+                         <VscAccount />
+
+                      </Link>
                       <Link
                         to={`/dashboard/edit_employee/${data.id}`}
-                        className="text-blue-500 hover:underline font-bold"
+                        className="text-blue-500 font-bold hover:text-green-500 transition-all duration-1000"
                       >
                         <FaEdit />
                       </Link>
                       <button
                         onClick={()=> handleDelete(data.id)}
-                        className="text-red-500 hover:underline font-bold text-2xl"
+                        className="text-red-500 font-bold"
                       >
                         <MdDeleteForever />
                       </button>

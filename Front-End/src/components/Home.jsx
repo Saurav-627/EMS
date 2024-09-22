@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { IoDocumentTextOutline, IoPeopleSharp } from "react-icons/io5";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { GrUserAdmin } from "react-icons/gr";
+import { FaCheckCircle, FaHourglassHalf } from "react-icons/fa";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
-const TableBox = ({ title, value }) => {
+const TableBox = ({ title, value, icon, bgColorClass }) => {
   return (
-    <div className="w-full h-full flex justify-center mx-2">
-      <div className="border shadow-2xl mt-3 flex justify-center">
-        <div className="font-bold p-5 text-center">
-          <h3>{title}:</h3>
-          <br />
-          <h1>{value}</h1>
+    <div className="w-full h-full p-4">
+      <div className="border shadow-2xl flex ">
+        <div
+          className={`flex items-center justify-center ${bgColorClass} w-16 text-gray-50`}
+        >
+          {icon}
+        </div>
+        <div className="pl-4">
+          <h3 className="font-semibold">{title}:</h3>
+          <h1 className="font-bold pt-1">{value}</h1>
         </div>
       </div>
     </div>
@@ -22,8 +28,6 @@ const Home = () => {
   const [employeeCount, setEmployeeCount] = useState(0);
   const [adminCount, setAdminCount] = useState(0);
   const [salary, setTotalSalary] = useState(0);
-  const [admin, setAdmin] = useState([]);
-  const navigate = useNavigate();
 
   const fetchEmployeeCount = async () => {
     try {
@@ -62,104 +66,69 @@ const Home = () => {
       .catch((err) => console.log("Error Occurs" + err));
   };
 
-  const fetchAdmin = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/auth/admin");
-      setAdmin(response.data.Result);
-    } catch (err) {
-      console.log("Error Fetching data" + err);
-    }
-  };
-
-  const handleDeleteAdmin = (ID) => {
-    axios
-      .delete(`http://localhost:3000/auth/delete_admin/${ID}`)
-      .then((response) => {
-        if (response.data.Status) {
-          // Refresh the admin data after deletion
-          fetchAdminCount();
-          fetchAdmin();
-        } else {
-          console.error("Error deleting admin:", response.data.Error);
-        }
-      });
-  };
-
   useEffect(() => {
     fetchEmployeeCount();
     fetchAdminCount();
     fetchTotalSalary();
-    fetchAdmin();
   }, []);
 
-  const handleAddAdmin = () => {
-    navigate("/dashboard/add_admin");
-  };
-
-  const TABLE_HEAD = ["SN", "Name", "Email", "Actions"];
-
   return (
-    <div>
-      <div className="flex h-28">
-        <TableBox title="Total Employee" value={employeeCount} />
-        <TableBox title="Total Admin" value={adminCount} />
-        <TableBox title="Total Salary" value={salary} />
-      </div>
+    <div className="bg-gray-50">
       <div>
-        <div className="w-full max-h-96 overflow-y-scroll mb-3 shadow rounded-lg">
-          <div className="flex justify-between items-center px-4 mt-4">
-            <h1 className="text-center text-black inline my-4 font-bold text-2xl">
-              List of Admin
-            </h1>
-            <button
-              onClick={() => handleAddAdmin()}
-              className=" bg-green-700 p-2  font-bold rounded-md text-slate-50"
-            >
-              Add Admin
-            </button>
-          </div>
-          <table className="w-full min-w-max table-auto text-center px-2">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b border-gray-200 bg-gray-50 p-4 text-sm font-bold text-gray-700"
-                  >
-                    {head}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {admin.map((data, index) => {
-                return (
-                  <tr key={index} className="border w-full h-16">
-                    <td>{index + 1}</td>
-                    <td>{data.Name}</td>
-                    <td>{data.Email}</td>
-                    <td className="">
-                      <div className="flex justify-center gap-4 text-xl">
-                        <Link
-                          to={`/dashboard/edit_admin/${data.ID}`}
-                          className="text-blue-500 hover:underline font-bold"
-                        >
-                          <FaEdit />
-                        </Link>
+        <div className=" p-4">
+          <h1 className="text-2xl font-bold ">Dashboard Overview</h1>
+        </div>
 
-                        <button
-                          onClick={() => handleDeleteAdmin(data.ID)}
-                          className="text-red-500 hover:underline font-bold text-2xl"
-                        >
-                          <MdDeleteForever />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        <div className="flex h-28">
+          <TableBox
+            icon={<IoPeopleSharp className="text-2xl" />}
+            bgColorClass="bg-green-500"
+            title="Total Employee"
+            value={employeeCount}
+          />
+          <TableBox
+            icon={<GrUserAdmin className="text-2xl" />}
+            title="Total Admin"
+            value={adminCount}
+            bgColorClass="bg-yellow-600"
+          />
+          <TableBox
+            icon={<RiMoneyRupeeCircleFill className="text-3xl" />}
+            title="Monthly Pay(NPR)"
+            value={salary}
+            bgColorClass="bg-red-500"
+          />
+        </div>
+      </div>
+      <div className="h-full">
+        <div className="p-4">
+          <h1 className="text-2xl font-bold text-center">Leave Details</h1>
+        </div>
+        <div className="grid grid-cols-2 h-28">
+          <TableBox
+            icon={<IoDocumentTextOutline className="text-2xl" />}
+            bgColorClass="bg-green-700"
+            title="Leave Applied"
+            value={employeeCount}
+          />
+          <TableBox
+            icon={<FaCheckCircle className="text-2xl" />}
+            bgColorClass="bg-green-700"
+            title="Leave Approval"
+            value={employeeCount}
+          />
+          <TableBox
+            icon={<FaHourglassHalf className="text-2xl" />}
+            bgColorClass="bg-yellow-700"
+            title="Leave Pending"
+            value={employeeCount}
+          />
+          <TableBox
+            icon={<AiOutlineCloseCircle className="text-2xl" />}
+            bgColorClass="bg-red-500"
+            title="Leave Rejected"
+            value={employeeCount}
+          />
         </div>
       </div>
     </div>
