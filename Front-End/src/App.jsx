@@ -1,16 +1,17 @@
-import Category from "./components/Category";
-import Dashboard from "./components/Dashboard";
-import Employee from "./components/Employee";
-import Home from "./components/Home";
-import Login from "./components/Login";
 import {BrowserRouter, Routes , Route} from "react-router-dom";
-import Profile from "./components/Profile";
-import AddCategory from "./components/AddCategory";
-import AddEmployee from "./components/AddEmployee";
-import EditEmployee from "./components/EditEmployee";
-import AddAdmin from "./components/AddAdmin";
-import EditAdmin from "./components/EditAdmin";
-import Admin from "./components/Admin";
+import Login from "./components/Dashboard/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Home from "./components/Dashboard/Home";
+import Employee from "./components/Employee/Employee";
+import Category from "./components/Category/Category";
+import Admin from "./components/Admin/Admin";
+import Profile from "./components/Dashboard/Profile";
+import AddCategory from "./components/Category/AddCategory";
+import AddEmployee from "./components/Employee/AddEmployee";
+import EditEmployee from "./components/Employee/EditEmployee";
+import AddAdmin from "./components/Admin/AddAdmin";
+import EditAdmin from "./components/Admin/EditAdmin";
+
 
 const App = () => {
   return (

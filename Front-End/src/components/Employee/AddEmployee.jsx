@@ -175,6 +175,9 @@ const AddEmployee = () => {
                 setEmployee({ ...employee, category_ID: e.target.value })
               }
             >
+              <option value="" disabled selected>
+                Select Category
+              </option>
               {category.map((c) => {
                 return (
                   <option key={c.ID} value={c.ID}>
